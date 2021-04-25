@@ -1,11 +1,17 @@
 #!/bin/bash
 
 set -e
+
+echo "Setting attributes..."
+#Enter location to save video here
+savdir=~/Dropbox/YouTube_Rips/
+
 read -p "Enter Your YouTube URL: "  ytlink
-cd
-cd ~/Dropbox/YouTube_Rips/
+cd $savdir
+
 echo "Attempting to download highest qualiity for $ytlink."
 youtube-dl -f 137+140 $ytlink || true
+
 read -p "Did it work? (y/n) " answer
 if [[ $answer == "y" || $answer == "yes" ]]; then
   dropbox start
@@ -25,8 +31,9 @@ if [[ $answer2 == "y" || $answer2 == "yes" ]]; then
 elif [[ $answer2 == "n" || $answer2 == "no" ]]
 then
   echo "Sorry. No DASH version available in 1080p or 720p. Try 'youtube-dl -F'."
-else echo "You didn't answer with yes or no, dummy. Exiting..."
+else echo "You didn't answer with yes or no. Exiting..."
   exit
 fi
+
 echo "Exiting..."
 exit
