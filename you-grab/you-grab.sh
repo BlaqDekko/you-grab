@@ -10,7 +10,7 @@ read -p "Enter Your YouTube URL: "  ytlink
 cd $savdir
 
 echo "Attempting to download highest qualiity for $ytlink."
-youtube-dl -f 137+140 $ytlink || true
+youtube-dl -f bestvideo+bestaudio $ytlink || true
 
 read -p "Did it work? (y/n) " answer
 if [[ $answer == "y" || $answer == "yes" ]]; then
